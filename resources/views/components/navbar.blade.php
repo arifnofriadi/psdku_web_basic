@@ -10,7 +10,10 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Mahasiswa</a>
+            <a class="nav-link" href="{{ route('mahasiswa') }}">Mahasiswa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('kelas') }}">Kelas</a>
           </li>
         </ul>
       </div>
