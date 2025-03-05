@@ -9,7 +9,7 @@
             <form action="" method="post">
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Nama Kelas</label>
-                    <input type="text" name="nama" class="form-control">
+                    <input type="text" name="nama_kelas" class="form-control">
                 </div>
                 <div class="mb-3">
                     <a href="{{ route('kelas') }}" class="btn btn-sm btn-danger">Kembali</a>

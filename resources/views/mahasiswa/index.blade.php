@@ -30,7 +30,7 @@
                     <td>12345678</td>
                     <td>08123456789</td>
                     <td>
-                        <a href="" class="btn btn-sm btn-primary">Detail</a>
+                        <a href="{{ route('mahasiswa.details') }}" class="btn btn-sm btn-primary">Detail</a>
                         <a href="{{ route('mahasiswa.edit') }}" class="btn btn-sm btn-success">Edit</a>
                         <a href="" class="btn btn-sm btn-danger">Hapus</a>
                     </td>

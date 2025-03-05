@@ -15,21 +15,27 @@
 
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama Kelas</th>
-                    <th scope="col">Opsi</th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama Kelas</th>
+                        <th scope="col">Opsi</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Kelas Programming</td>
-                    <td>
-                        <a href="{{ route('kelas.update') }}" class="btn btn-sm btn-success">Edit</a>
-                        <a href="" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                    @forelse ($data as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $item->nama_kelas ? $item->nama_kelas : '-' }}</td>
+                            <td>
+                                <a href="{{ route('kelas.update') }}" class="btn btn-sm btn-success">Edit</a>
+                                <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="text-center">Tidak ada data ditemukan</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
