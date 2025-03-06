@@ -13,6 +13,20 @@
                 </div>
             </div>
 
+            @if (session('success'))
+                <script>
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: '{{ session('success') }}',
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                </script>
+            @endif
+
+
             <table class="table">
                 <thead>
                     <tr>
@@ -28,7 +42,7 @@
                             <td>{{ $item->nama_kelas ? $item->nama_kelas : '-' }}</td>
                             <td>
                                 <a href="{{ route('kelas.update') }}" class="btn btn-sm btn-success">Edit</a>
-                                <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                <a href="#" data-id="{{ $item->id }}" class="btn btn-sm btn-danger delete-btn">Hapus</a>
                             </td>
                         </tr>
                     @empty
@@ -40,4 +54,34 @@
             </table>
         </div>
     </div>
+
+    <script lang="javascript">
+        // delete confirmation
+        document.addEventListener("DOMContentLoaded", function () {
+           document.querySelectorAll(".delete-btn").forEach((button) => {
+                button.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    let id = this.getAttribute("data-id");
+
+                    let deleteUrl = "{{ route('kelas.destroy', ':id') }}".replace(':id', id);
+
+                    Swal.fire({
+                        title: "Yakin ingin menghapus data ini?",
+                        text: "Data yang dihapus tidak dapat dikembalikan",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#3085d6",
+                        confirmButtonText: "Ya, Hapus",
+                        cancelButtonText: "Batal"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = deleteUrl;
+                        }
+                    });
+                });
+           });
+        });
+    </script>
 @endsection

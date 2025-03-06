@@ -12,3 +12,5 @@ Route::get('/mahasiswa-details', [MahasiswaController::class, 'details'])->name(
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas-create', [KelasController::class, 'create'])->name('kelas.create');
 Route::get('/kelas-edit', [KelasController::class, 'update'])->name('kelas.update');
+Route::post('/kelas-tambah', [KelasController::class, 'store'])->name('kelas.store');
+Route::get('/kelas-hapus/{id}', [KelasController::class, 'destroy'])->name('kelas.destroy');
