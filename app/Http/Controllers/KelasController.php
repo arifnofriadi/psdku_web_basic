@@ -42,12 +42,58 @@ class KelasController extends Controller
         }
     }
 
-    public function update()
+    public function update($id)
     {
-        return view('kelas.update');
+        try {
+            $data = Kelas::find($id);
+
+            if (!$data) {
+                return back()->with('error', 'Kelas Tidak Ditemukan');
+            }
+
+            return view('kelas.update', compact('data'));
+        } catch (\Throwable $th) {
+            Log::error([
+                'Line'      => $th->getLine(),
+                'Message'   => $th->getMessage(),
+                'File'      => $th->getFile(),
+            ]);
+
+            return $th->getMessage();
+        }
     }
 
-    
+    public function updateProcess(KelasRequest $request, $id)
+    {
+        try{
+            $data = Kelas::find($id);
+
+            if (!$data) {
+                return back()->with('error', 'Kelas Tidak Ditemukan');
+            }
+
+            $response = $data->update([
+                'nama_kelas' => $request->nama_kelas
+            ]);
+
+            if (!$response) {
+                return back()->with('error', 'Kelas Gagal Diperbarui');
+            }
+
+            return redirect()->route('kelas')->with('success', 'Kelas Berhasil Diperbarui');
+        } catch (\Throwable $th) {
+            Log::error([
+                'Line'      => $th->getLine(),
+                'Message'   => $th->getMessage(),
+                'File'      => $th->getFile(),
+            ]);
+
+            return $th->getMessage();
+        }
+
+    }
+
+
 
     public function destroy($id)
     {

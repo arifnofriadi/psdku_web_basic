@@ -6,10 +6,12 @@
             <h3>Ubah Data Kelas</h3>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{  route('kelas.update-process', $data->id) }}" method="post">
+                @csrf
+
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Nama</label>
-                    <input type="text" name="nama" class="form-control">
+                    <input type="text" name="nama_kelas" class="form-control" value="{{ $data->nama_kelas }}">
                 </div>
                 <div class="mb-3">
                     <a href="{{ route('kelas') }}" class="btn btn-sm btn-danger">Kembali</a>

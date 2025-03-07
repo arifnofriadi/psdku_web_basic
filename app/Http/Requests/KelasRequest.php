@@ -30,7 +30,7 @@ class KelasRequest extends FormRequest
     {
         return [
             'required'  => 'nama kelas harus diisi.',
-            'string'    => 'nama kelas harus berupa teks.',
+            'string'    => 'nama kelas harus berupa string.',
             'max'       => 'nama kelas maksimal 255 karakter.',
             'unique'    => 'nama kelas sudah digunakan.',
         ];
