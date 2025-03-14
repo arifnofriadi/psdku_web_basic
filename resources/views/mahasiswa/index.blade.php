@@ -13,30 +13,44 @@
                 </div>
             </div>
 
-            <table class="table">
+            <table class="table" id="myTable">
                 <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">NIM</th>
-                    <th scope="col">Kontak</th>
-                    <th scope="col">Opsi</th>
-                </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">NIM</th>
+                        <th scope="col">Kontak</th>
+                        <th scope="col">Opsi</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>John Doe</td>
-                    <td>12345678</td>
-                    <td>08123456789</td>
-                    <td>
-                        <a href="{{ route('mahasiswa.details') }}" class="btn btn-sm btn-primary">Detail</a>
-                        <a href="{{ route('mahasiswa.edit') }}" class="btn btn-sm btn-success">Edit</a>
-                        <a href="" class="btn btn-sm btn-danger">Hapus</a>
-                    </td>
-                </tr>
+                    @forelse ($data as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->nim }}</td>
+                            <td>
+                                <a href="tel:+{{ $item->no_hp }}">{{ $item->no_hp }}</a> <br>
+                                <a href="mailto:{{ $item->email }}">{{ $item->email }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ route('mahasiswa.details', $item->id) }}"
+                                    class="btn btn-sm btn-primary">Detail</a>
+                                <a href="{{ route('mahasiswa.edit') }}" class="btn btn-sm btn-success">Edit</a>
+                                <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">Tidak ada data ditemukan</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 @endsection
