@@ -50,6 +50,17 @@
         </script>
     @endif
 
+    @if (session('info'))
+        <script>
+            Swal.fire({
+                icon: 'info',
+                title: 'Info',
+                text: '{{ session('info') }}',
+                showConfirmButton: true,
+            });
+        </script>
+    @endif
+
     {{-- Content --}}
     <div class="container mt-4 mb-4">
         @yield('content')
