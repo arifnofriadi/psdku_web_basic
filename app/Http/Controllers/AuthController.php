@@ -24,7 +24,7 @@ class AuthController extends Controller
         try {
             $validateData = $request->validate([
                 'email'     =>  'required|email',
-                'password'  =>  'required'
+                'password'  =>  'required',
             ], [
                 'email.required'    =>  'Email tidak boleh kosong',
                 'email.email'       =>  'Email tidak valid',

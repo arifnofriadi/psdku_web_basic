@@ -9,7 +9,7 @@ use App\Http\Controllers\AuthController;
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::prefix('/dashboard')->group(function () {
+Route::group(['prefix' => '/dashboard', 'middleware' => ['isAdmin']] , function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // route mahasiswa
